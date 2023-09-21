@@ -33,7 +33,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/srobbin01/tailwind-dashboard-template-dashwind"
+    "url": "git+https://github.com/obmaikano/ipm"
   },
   "keywords": [
     "reactjs",
@@ -49,7 +49,7 @@
   "author": "srobbin01",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/srobbin01/tailwind-dashboard-template-dashwind/issues"
+    "url": "https://github.com/obmaikano/ipm/issues"
   },
   "homepage": "",
   "eslintConfig": {
