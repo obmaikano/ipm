@@ -12,7 +12,7 @@ const TopSideButtons = () => {
     const dispatch = useDispatch()
 
     const openAddNewCustomerModal = () => {
-        dispatch(openModal({title : "Add New Customer", bodyType : MODAL_BODY_TYPES.DEFAULT}))
+        dispatch(openModal({title : "Add New Customer", bodyType : MODAL_BODY_TYPES.CUSTOMER_ADD_NEW}))
     }
 
     return(
@@ -70,9 +70,11 @@ function Customers() {
                                                 </div>
                                             </div>
                                         </td>
-                                        <td>{l.email}</td>
+                                        <td>{l.payroll_number}</td>
+                                        <td>{l.cell_number}</td>
                                         <td>{moment(new Date()).add(-5*(k+2), 'days').format("DD MMM YY")}</td>
                                         
+                                        <td>{l.status}</td>
                                         <td>{l.last_name}</td>
                                         <td><button className="btn btn-square btn-ghost" onClick={() => deleteCurrentCustomer(k)}><TrashIcon className="w-5"/></button></td>
                                         </tr>
