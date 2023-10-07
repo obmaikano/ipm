@@ -18,6 +18,7 @@ const GettingStarted = lazy(() => import('../pages/GettingStarted'))
 const DocFeatures = lazy(() => import('../pages/DocFeatures'))
 const DocComponents = lazy(() => import('../pages/DocComponents'))
 const Customers = lazy(() => import('../pages/protected/Customers'))
+const CustomerCategories = lazy(() => import('../pages/protected/CustomerCategories'))
 
 
 const routes = [
@@ -84,6 +85,10 @@ const routes = [
   {
     path: '/customers',
     component: Customers
+  },
+  {
+    path: '/customercategories',
+    component: CustomerCategories
   },
 ]
 

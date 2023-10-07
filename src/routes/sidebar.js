@@ -6,6 +6,7 @@ import Cog6ToothIcon from '@heroicons/react/24/outline/Cog6ToothIcon'
 import ChartBarIcon from '@heroicons/react/24/outline/ChartBarIcon'
 import CurrencyDollarIcon from '@heroicons/react/24/outline/CurrencyDollarIcon'
 import UsersIcon from '@heroicons/react/24/outline/UsersIcon'
+import UsersGroupIcon from '@heroicons/react/24/outline/UserGroupIcon'
 
 const iconClasses = `h-6 w-6`
 const submenuIconClasses = `h-5 w-5`
@@ -28,13 +29,13 @@ const routes = [
         name: 'Customers', // name that appear in Sidebar
       },
       {
-        path: '/app/settings-billing',
-        icon: <WalletIcon className={submenuIconClasses}/>,
+        path: '/app/customercategories',
+        icon: <UsersGroupIcon className={submenuIconClasses}/>,
         name: 'Customer Categories',
       },
       {
-        path: '/app/settings-team', // url
-        icon: <UsersIcon className={submenuIconClasses}/>, // icon component
+        path: '/app/billsources', // url
+        icon: <WalletIcon className={submenuIconClasses}/>, // icon component
         name: 'Billing Sources', // name that appear in Sidebar
       },
     ]
