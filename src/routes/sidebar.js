@@ -7,6 +7,10 @@ import ChartBarIcon from '@heroicons/react/24/outline/ChartBarIcon'
 import CurrencyDollarIcon from '@heroicons/react/24/outline/CurrencyDollarIcon'
 import UsersIcon from '@heroicons/react/24/outline/UsersIcon'
 import UsersGroupIcon from '@heroicons/react/24/outline/UserGroupIcon'
+import FolderOpenIcon from '@heroicons/react/24/outline/FolderOpenIcon'
+import FolderPlusIcon from '@heroicons/react/24/outline/FolderPlusIcon'
+import LifebuoyIcon from '@heroicons/react/24/outline/LifebuoyIcon'
+import ComputerDesktopIcon from '@heroicons/react/24/outline/ComputerDesktopIcon'
 
 const iconClasses = `h-6 w-6`
 const submenuIconClasses = `h-5 w-5`
@@ -20,7 +24,7 @@ const routes = [
   },
   {
     path: '', //no url needed as this has submenu
-    icon: <Cog6ToothIcon className={`${iconClasses} inline` }/>, // icon component
+    icon: <UsersIcon className={`${iconClasses} inline` }/>, // icon component
     name: 'Customer Management', // name that appear in Sidebar
     submenu : [
       {
@@ -42,7 +46,7 @@ const routes = [
   },
   {
     path: '', //no url needed as this has submenu
-    icon: <Cog6ToothIcon className={`${iconClasses} inline` }/>, // icon component
+    icon: <FolderOpenIcon className={`${iconClasses} inline` }/>, // icon component
     name: 'Policy Management', // name that appear in Sidebar
     submenu : [
       {
@@ -74,7 +78,7 @@ const routes = [
   },
   {
     path: '', //no url needed as this has submenu
-    icon: <Cog6ToothIcon className={`${iconClasses} inline` }/>, // icon component
+    icon: <FolderPlusIcon className={`${iconClasses} inline` }/>, // icon component
     name: 'Policy Administration', // name that appear in Sidebar
     submenu : [
       {
@@ -111,7 +115,7 @@ const routes = [
   },
   {
     path: '', //no url needed as this has submenu
-    icon: <Cog6ToothIcon className={`${iconClasses} inline` }/>, // icon component
+    icon: <LifebuoyIcon className={`${iconClasses} inline` }/>, // icon component
     name: 'Claims Management', // name that appear in Sidebar
     submenu : [
       {
@@ -143,7 +147,7 @@ const routes = [
   },
   {
     path: '/app/transactions', // url
-    icon: <CurrencyDollarIcon className={iconClasses}/>, // icon component
+    icon: <ComputerDesktopIcon className={iconClasses}/>, // icon component
     name: 'House keeping', // name that appear in Sidebar
   },
   {
