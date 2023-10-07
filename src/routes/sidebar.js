@@ -23,7 +23,7 @@ const routes = [
     name: 'Customer Management', // name that appear in Sidebar
     submenu : [
       {
-        path: '/app/settings-profile', //url
+        path: '/app/customers', //url
         icon: <UserIcon className={submenuIconClasses}/>, // icon component
         name: 'Customers', // name that appear in Sidebar
       },
