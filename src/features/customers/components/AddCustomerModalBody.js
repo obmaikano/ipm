@@ -16,12 +16,11 @@ const INITIAL_CUSTOMER_OBJ = {
 
 function AddCustomerModalBody({closeModal}) {
     const dispatch = useDispatch()
-    const [loading, setLoading] = useState(false)
     const [errorMessage, setErrorMessage] = useState("")
     const [customerObj, setCustomerObj] = useState(INITIAL_CUSTOMER_OBJ)
 
     const saveNewCustomer = () => {
-        if(customerObj.first_name.trim() == "") return setErrorMessage("First Name is required!")
+        if(customerObj.first_name.trim() === "") return setErrorMessage("First Name is required!")
         else {
             let newCustomerObj = {
                 "first_name" : customerObj.first_name,
