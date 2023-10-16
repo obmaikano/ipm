@@ -9,7 +9,7 @@ function SelectBox(props){
     
     const {labelTitle, labelDescription, defaultValue, containerStyle, placeholder, labelStyle, options, updateType, updateFormValue} = props
 
-    const [value, setValue] = useState(defaultValue || "")
+    const [value, setValue] = useState(defaultValue || options[0].value);
 
 
     const updateValue = (newValue) =>{

@@ -35,7 +35,7 @@ function ModalLayout(){
                 {
                     {
                              [MODAL_BODY_TYPES.LEAD_ADD_NEW] : <AddLeadModalBody closeModal={close} extraObject={extraObject}/>,
-                             [MODAL_BODY_TYPES.CUSTOMER_ADD_NEW] : <AddCustomerModalBody closeModal={close} extraObject={extraObject}/>,
+                             [MODAL_BODY_TYPES.CUSTOMER_ADD_NEW] : <AddCustomerModalBody closeModal={close} size='lg' extraObject={extraObject}/>,
                              [MODAL_BODY_TYPES.CONFIRMATION] : <ConfirmationModalBody closeModal={close} extraObject={extraObject}/>,
                              [MODAL_BODY_TYPES.CUSTOMER_CATEGORY_ADD_NEW] : <AddCustomerCategoryModalBody extraObject={extraObject} closeModal={close}/>,
                              [MODAL_BODY_TYPES.DEFAULT] : <div></div>
