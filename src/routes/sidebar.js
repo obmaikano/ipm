@@ -50,29 +50,9 @@ const routes = [
     name: 'Policy Management', // name that appear in Sidebar
     submenu : [
       {
-        path: '/app/settings-profile', //url
+        path: '/app/policies', //url
         icon: <UserIcon className={submenuIconClasses}/>, // icon component
         name: 'All Policies', // name that appear in Sidebar
-      },
-      {
-        path: '/app/settings-profile', //url
-        icon: <UserIcon className={submenuIconClasses}/>, // icon component
-        name: 'Active Policies', // name that appear in Sidebar
-      },
-      {
-        path: '/app/settings-profile', //url
-        icon: <UserIcon className={submenuIconClasses}/>, // icon component
-        name: 'Pending Policies', // name that appear in Sidebar
-      },
-      {
-        path: '/app/settings-profile', //url
-        icon: <UserIcon className={submenuIconClasses}/>, // icon component
-        name: 'Settled Policies', // name that appear in Sidebar
-      },
-      {
-        path: '/app/settings-profile', //url
-        icon: <UserIcon className={submenuIconClasses}/>, // icon component
-        name: 'Rejected Policies', // name that appear in Sidebar
       },
     ]
   },
@@ -82,17 +62,17 @@ const routes = [
     name: 'Policy Administration', // name that appear in Sidebar
     submenu : [
       {
-        path: '/app/settings-billing',
+        path: '#',
         icon: <WalletIcon className={submenuIconClasses}/>,
         name: 'Policy Products',
       },
       {
-        path: '/app/settings-team', // url
+        path: '#', // url
         icon: <UsersIcon className={submenuIconClasses}/>, // icon component
         name: 'Product Plans', // name that appear in Sidebar
       },
       {
-        path: '/app/settings-team', // url
+        path: '#', // url
         icon: <UsersIcon className={submenuIconClasses}/>, // icon component
         name: 'Policy Requests', // name that appear in Sidebar
       },
@@ -122,17 +102,7 @@ const routes = [
         path: '/app/settings-profile', //url
         icon: <UserIcon className={submenuIconClasses}/>, // icon component
         name: 'All Claims', // name that appear in Sidebar
-      },
-      {
-        path: '/app/settings-billing',
-        icon: <WalletIcon className={submenuIconClasses}/>,
-        name: 'Approved Claims',
-      },
-      {
-        path: '/app/settings-team', // url
-        icon: <UsersIcon className={submenuIconClasses}/>, // icon component
-        name: 'Pending Claims', // name that appear in Sidebar
-      },
+      }
     ]
   },
   {

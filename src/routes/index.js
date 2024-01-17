@@ -19,7 +19,8 @@ const DocFeatures = lazy(() => import('../pages/DocFeatures'))
 const DocComponents = lazy(() => import('../pages/DocComponents'))
 const Customers = lazy(() => import('../pages/protected/Customers'))
 const CustomerCategories = lazy(() => import('../pages/protected/CustomerCategories'))
-
+const Policies = lazy(() => import('../pages/protected/Policies'))
+const PolicyDetails = lazy(() => import('../pages/protected/PolicyDetails'))
 
 const routes = [
   {
@@ -90,6 +91,14 @@ const routes = [
     path: '/customercategories',
     component: CustomerCategories
   },
+  {
+    path: '/policies',
+    component: Policies
+  },
+  {
+    path: '/policies/:id',
+    component: PolicyDetails
+  }
 ]
 
 export default routes

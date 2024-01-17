@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { useDispatch } from "react-redux"
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import InputText from "../../../components/Input/InputText"
 import ErrorText from "../../../components/Typography/ErrorText"
 import SelectBox from "../../../components/Input/SelectBox"
@@ -35,32 +35,22 @@ const INTIAL_BANK_ACCOUNT_OBJ = {
 function AddCustomerModalBody({ closeModal, size }) {
     const dispatch = useDispatch()
     const [errorMessage, setErrorMessage] = useState("")
-    const [currentStep, setCurrentStep] = useState(1); // Initialize with the first step
+    const [currentStep, setCurrentStep] = useState(1); 
     const [customerObj, setCustomerObj] = useState(INITIAL_CUSTOMER_OBJ);
     const [bankAccountObj, setBankAccountObj] = useState(INTIAL_BANK_ACCOUNT_OBJ);
 
-    const genderOptions = [
-        { name: 'Male', value: 'male' },
-        { name: 'Female', value: 'female' },
-    ];
+    const genderOptions = useSelector((state) => state.gender.genderOptions);
+    const maritalStatusOptions = useSelector((state) => state.maritalstatus.maritalStatusOptions);
+    
     const titleOptions = [
-        { name: 'Mr', value: 'mr' },
+        { namlongValuee: 'Mr', value: 'mr' },
         { name: 'Mrs', value: 'mrs' },
         { name: 'Dr', value: 'dr' },
         { name: 'Prof', value: 'prof' },
     ];
 
-    const maritalStatusOptions = [
-        { name: 'Single', value: 'single' },
-        { name: 'Married', value: 'married' },
-        { name: 'Divorced', value: 'divorced' },
-        { name: 'Widowed', value: 'widowed' },
-        { name: 'Separated', value: 'separated' },
-        { name: 'Other', value: 'other' },
-    ];
-
     const employerOptions = [
-        { name: 'Company A', value: 'companyA' },
+        { longValue: 'Company A', value: 'companyA' },
         { name: 'Company B', value: 'companyB' },
         { name: 'Company C', value: 'companyC' },
         { name: 'Company D', value: 'companyD' },
@@ -123,9 +113,9 @@ function AddCustomerModalBody({ closeModal, size }) {
 
                     <InputText type="text" defaultValue={customerObj.lastname} updateType="lastname" containerStyle="mt-4" labelTitle="Surname" updateFormValue={updateFormValue} />
                     <InputText type="text" defaultValue={customerObj.identity} updateType="identity" containerStyle="mt-4" labelTitle="Identity" updateFormValue={updateFormValue} />
-
-                    <InputText type="date" defaultValue={customerObj.dateOfBirth} updateType="dateOfBirth" containerStyle="mt-4" labelTitle="Date of Birth" updateFormValue={updateFormValue} />
                     <SelectBox labelTitle="Gender" containerStyle="mt-4" placeholder="Select Gender" labelStyle="text-sm font-medium text-gray-700" options={genderOptions} updateType="gender" updateFormValue={updateFormValue} />
+                    <InputText type="date" defaultValue={customerObj.dateOfBirth} updateType="dateOfBirth" containerStyle="mt-4" labelTitle="Date of Birth" updateFormValue={updateFormValue} />
+                   
                     <SelectBox labelTitle="Marital Status" containerStyle="mt-4" placeholder="Select Marital Status" labelStyle="text-sm font-medium text-gray-700" options={maritalStatusOptions} updateType="maritalStatus" updateFormValue={updateFormValue} />
                     <SelectBox labelTitle="Employer" containerStyle="mt-4" placeholder="Select Employer" labelStyle="text-sm font-medium text-gray-700" options={employerOptions} updateType="employerId" updateFormValue={updateFormValue} />
                 </div>
@@ -357,8 +347,7 @@ function AddCustomerModalBody({ closeModal, size }) {
             title: "Confirmation",
             component: renderConfirmation,
         },
-    ];
-
+    ];  
 
     return (
         <div className="modal-dialog">

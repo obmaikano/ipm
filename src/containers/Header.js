@@ -1,7 +1,6 @@
 import { themeChange } from 'theme-change'
 import React, {  useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import BellIcon  from '@heroicons/react/24/outline/BellIcon'
 import Bars3Icon  from '@heroicons/react/24/outline/Bars3Icon'
 import MoonIcon from '@heroicons/react/24/outline/MoonIcon'
 import SunIcon from '@heroicons/react/24/outline/SunIcon'
@@ -77,13 +76,14 @@ function Header(){
             </label>
 
 
-                {/* Notification icon */}
+                {/* Notification icon 
                 <button className="btn btn-ghost ml-4  btn-circle" onClick={() => openNotification()}>
                     <div className="indicator">
                         <BellIcon className="h-6 w-6"/>
                         {noOfNotifications > 0 ? <span className="indicator-item badge badge-secondary badge-sm">{noOfNotifications}</span> : null }
                     </div>
                 </button>
+                */}
 
 
                 {/* Profile icon, opening menu on click */}

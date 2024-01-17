@@ -5,6 +5,10 @@ import rightDrawerSlice from '../features/common/rightDrawerSlice'
 import leadsSlice from '../features/leads/leadSlice'
 import customerSlice from '../features/customers/customerSlice'
 import customerCategorySlice from '../features/customerCategories/customerCategorySlice'
+import policySlice from '../features/policies/policySlice';
+import genderSlice from '../features/commonprops/gender/genderSlice'
+import maritalStatusSlice from '../features/commonprops/maritalstatus/maritalStatusSlice'
+import premiumCoversSlice from '../features/commonprops/premiumCovers/premiumCoversSlice'
 
 const combinedReducer = {
   header : headerSlice,
@@ -12,7 +16,11 @@ const combinedReducer = {
   modal : modalSlice,
   lead : leadsSlice,
   customer : customerSlice,
-  customercategory : customerCategorySlice
+  customercategory : customerCategorySlice,
+  policy : policySlice,
+  gender : genderSlice,
+  maritalstatus : maritalStatusSlice,
+  premiumCover : premiumCoversSlice,
 }
 
 export default configureStore({
