@@ -5,10 +5,10 @@ import { API_BASE_URL, POLICIES_PORT, POLICIES_URL } from '../../config';
 
 // Define initial state
 const initialState = {
-    policies: [],
-    selectedPolicy: null,
-    policyStatus: null,
-    isLoading: false,
+  policies: [],
+  selectedPolicy: null,
+  policyStatus: null,
+  isLoading: false,
 };
 
 // Define async thunk for getting a policy by policyId

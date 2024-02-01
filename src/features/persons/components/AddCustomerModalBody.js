@@ -4,7 +4,7 @@ import InputText from "../../../components/Input/InputText"
 import ErrorText from "../../../components/Typography/ErrorText"
 import SelectBox from "../../../components/Input/SelectBox"
 import { showNotification } from "../../common/headerSlice"
-import { addNewCustomer } from "../customerSlice"
+import { postPerson } from "../personSlice"
 
 const INITIAL_CUSTOMER_OBJ = {
     firstname: "",
@@ -91,7 +91,7 @@ function AddCustomerModalBody({ closeModal, size }) {
                 "cardExpiry": bankAccountObj.cardExpiry
             }
         }
-        dispatch(addNewCustomer({ newCustomerObj }))
+        dispatch(postPerson({ newCustomerObj }))
         dispatch(showNotification({ message: "New Customer Added!", status: 1 }));
         closeModal();
     }

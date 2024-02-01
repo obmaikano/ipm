@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { openModal } from "../common/modalSlice";
 import { CONFIRMATION_MODAL_CLOSE_TYPES, MODAL_BODY_TYPES } from "../../utils/globalConstantUtil";
 import TitleCard from "../../components/Cards/TitleCard"
-import { getCustomersContent } from "./customerSlice"
+import { getAllPersons } from "./personSlice"
 import TrashIcon from '@heroicons/react/24/outline/TrashIcon'
 import EyeIcon from '@heroicons/react/24/outline/EyeIcon'
 import { fetchGenderOptions } from "../commonprops/gender/genderSlice"
@@ -38,11 +38,11 @@ const TopSideButtons = () => {
 
 function Customers() {
 
-    const { customers } = useSelector(state => state.customer)
+    const { persons } = useSelector(state => state.person)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getCustomersContent())
+        dispatch(getAllPersons())
     }, [])
 
     const deleteCurrentCustomer = (index) => {
@@ -70,7 +70,7 @@ function Customers() {
                         </thead>
                         <tbody>
                             {
-                                customers.map((l, k) => {
+                                persons.map((l, k) => {
                                     return (
                                         <tr key={k}>
                                             <td>

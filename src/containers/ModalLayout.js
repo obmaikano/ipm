@@ -4,10 +4,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import { closeModal } from '../features/common/modalSlice'
 import AddLeadModalBody from '../features/leads/components/AddLeadModalBody'
 import ConfirmationModalBody from '../features/common/components/ConfirmationModalBody'
-import AddCustomerModalBody from '../features/customers/components/AddCustomerModalBody'
+import AddCustomerModalBody from '../features/persons/components/AddCustomerModalBody'
 import AddCustomerCategoryModalBody from '../features/customerCategories/components/AddCustomerCategoryModalBody'
 import AddPolicyModalBody from '../features/policies/components/AddPolicyModalBody'
-
 
 function ModalLayout(){
 
