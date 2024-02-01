@@ -1,6 +1,9 @@
 export const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://16.171.113.209:';
-export const COMMON_PROP_PORT = '8080/'
-export const POLICIES_PORT = '8181/'
+export const BILLING_SERVICE_URL = 'http://13.49.46.12/:';
+export const BILLING_PORT = '8282/';
+export const BILLING_URL = 'billing';
+export const COMMON_PROP_PORT = '8080/';
+export const POLICIES_PORT = '8181/';
 export const COMMON_PROP_URL = 'commonprops/listvalues/';
 export const GENDER_URL = 'GENDER';
 export const TITLE_URL = '';

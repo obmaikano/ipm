@@ -29,7 +29,7 @@ function SelectBox(props){
                 <option disabled value="PLACEHOLDER">{placeholder}</option>
                 {
                     options.map((o, k) => {
-                        return <option value={o.valueSet || o.valueSet} key={k}>{o.productName}</option>
+                        return <option value={o.valueSet || o.valueSet} key={k}>{o.longValue}</option>
                     })
                 }
             </select>
