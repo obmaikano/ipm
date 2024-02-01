@@ -7,6 +7,7 @@ module.exports = Object.freeze({
         CUSTOMER_ADD_NEW : "CUSTOMER_ADD_NEW",
         CUSTOMER_CATEGORY_ADD_NEW : "CUSTOMER_CATEGORY_ADD_NEW",
         POLICY_ADD_NEW : "POLICY_ADD_NEW",
+        EMPLOYER_ADD_NEW : "EMPLOYER_ADD_NEW",
         DEFAULT : "",
     },
 
@@ -19,6 +20,7 @@ module.exports = Object.freeze({
         LEAD_DELETE : "LEAD_DELETE",
         CUSTOMER_DELETE: "CUSTOMER_DELETE",
         CUSTOMER_CATEGORY_DELETE: "CUSTOMER_CATEGORY_DELETE",
-        POLICY_DELETE : "POLICY_DELETE"
+        POLICY_DELETE : "POLICY_DELETE",
+        EMPLOYER_DELETE : "EMPLOYER_DELETE"
     },
 });

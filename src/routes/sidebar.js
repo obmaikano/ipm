@@ -38,9 +38,9 @@ const routes = [
         name: 'Customer Categories',
       },
       {
-        path: '/app/billsources', // url
+        path: '/app/employers', // url
         icon: <WalletIcon className={submenuIconClasses}/>, // icon component
-        name: 'Billing Sources', // name that appear in Sidebar
+        name: 'Employers', // name that appear in Sidebar
       },
     ]
   },

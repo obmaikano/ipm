@@ -11,3 +11,4 @@ export const MARITAL_STATUS_URL = 'MARITALSTATUS';
 export const PREMIUM_COVERS_URL = 'premiumCovers';
 export const POLICIES_URL = 'policies';
 export const PERSON_INFO_URL = 'personInfo';
+export const EMPLOYER_URL = 'employer';

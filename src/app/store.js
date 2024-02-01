@@ -10,6 +10,7 @@ import maritalStatusSlice from '../features/commonprops/maritalstatus/maritalSta
 import premiumCoversSlice from '../features/commonprops/premiumCovers/premiumCoversSlice'
 import billingInfoSlice from '../features/billingInfo/billingInfoSlice'
 import personSlice from '../features/persons/personSlice'
+import employerSlice from '../features/employers/employerSlice'
 
 const combinedReducer = {
   header : headerSlice,
@@ -23,6 +24,7 @@ const combinedReducer = {
   maritalstatus : maritalStatusSlice,
   premiumCover : premiumCoversSlice,
   billing : billingInfoSlice,
+  employer : employerSlice,
 }
 
 export default configureStore({
