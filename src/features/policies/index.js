@@ -70,7 +70,7 @@ function Policies() {
                                 <th>Status</th>
                                 <th>Created By</th>
                                 <th>Date Created</th>
-                                <th></th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -78,15 +78,15 @@ function Policies() {
                                 policies.map((l, k) => {
                                     return (
                                         <tr key={k}>
-                                            <td>{l.fileNumber}</td>
+                                            <td>{l.id}</td>
                                             <td></td>
                                             <td></td>
                                             <td>{l.totalPremium}</td>
                                             <td>{l.policyStatus}</td>
                                             <td>{l.lastUpdateBy}</td>
                                             <td>{l.createDate}</td>
-                                            <td><button className="btn btn-square btn-ghost" onClick={() => viewCurrentPolicy(k)}><EyeIcon className="w-5" /></button></td>
-                                            <td><button className="btn btn-square btn-ghost" onClick={() => deleteCurrentPolicy(k)}><TrashIcon className="w-5" /></button></td>
+                                            <td><button className="btn btn-square btn-ghost" onClick={() => viewCurrentPolicy(k)}><EyeIcon className="w-5" /></button>
+                                            <button className="btn btn-square btn-ghost" onClick={() => deleteCurrentPolicy(k)}><TrashIcon className="w-5" /></button></td>
                                         </tr>
                                     )
                                 })

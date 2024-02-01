@@ -27,7 +27,7 @@ export const checkPremiumCoverStatus = createAsyncThunk('premiumcoverstatus', as
 export const fetchPremiumCoverProducts = createAsyncThunk('premiumcoverproducts', async () => {
   try {
     // Make API call to fetch all premium cover products
-    const response = await axios.get(`${API_BASE_URL}${PREMIUM_COVERS_URL}/products`);
+    const response = await axios.get(`${API_BASE_URL}${COMMON_PROP_PORT}${PREMIUM_COVERS_URL}/products`);
     return response.data;
   } catch (error) {
     // Handle errors during API call

@@ -3,6 +3,8 @@ import TitleCard from "../../../components/Cards/TitleCard"
 import { useSelector } from "react-redux";
 import { format } from "date-fns";
 import { openModal } from "../../common/modalSlice";
+import TrashIcon from '@heroicons/react/24/outline/TrashIcon';
+import EyeIcon from "@heroicons/react/24/outline/EyeIcon";
 
 
 const TopSideButtons = () => {
@@ -42,7 +44,6 @@ const TopSideButtons = () => {
             <button className="btn px-6 btn-sm normal-case btn-info" onClick={() => handlePrintPolicyDetails()}>Print Details</button>
             <button className="btn px-6 btn-sm normal-case btn-secondary" onClick={() => handleAddNote()}>Add Note</button>
         </div>
-
     )
 }
 
@@ -63,6 +64,14 @@ const DependentsTopSideButtons = () => {
     );
 };
 
+const deleteSelectedDependent = (index) => {
+   
+}
+
+const viewSelectedDependent = (index) => {
+    
+}
+
 function PolicyDetails() {
     const policyData = useSelector((state) => state.policy.selectedPolicy);
 
@@ -71,20 +80,19 @@ function PolicyDetails() {
             <TitleCard title="Policy" topMargin="mt-2" TopSideButtons={<TopSideButtons />}>
                 {policyData && (
                     <>
-                        <div className="grid grid-cols-2 gap-8">
+                        <div className="grid grid-cols-1 gap-8">
                             <div className="bg-gray-100 p-6 rounded-lg">
                                 <p className="text-xl font-semibold mb-4">Policy Information</p>
                                 <div className="grid grid-cols-2 gap-4 text-gray-600">
-                                    <Field label="ID" value={policyData.id} />
                                     <Field label="Policy ID" value={policyData.policyId} />
-                                    <Field label="Scheme ID" value={policyData.schemeId} />
-                                    <Field label="Product ID" value={policyData.productId} />
+                                    <Field label="Scheme" value={policyData.schemeId} />
+                                    <Field label="Product" value={policyData.productId} />
                                     <Field label="Agent Code" value={policyData.agentCode} />
                                     <Field label="Policy Duration" value={policyData.policyDuration} />
                                     <Field label="Policy Start Date" value={formatDate(policyData.policyStartDate)} />
                                     <Field label="Policy End Date" value={formatDate(policyData.policyEndDate)} />
                                     <Field label="Policy Activation Date" value={formatDate(policyData.policyActivationDate)} />
-                                    <Field label="Billing ID" value={policyData.billingId} />
+                                    <Field label="Billing" value={policyData.billingId} />
                                     <Field label="Old Policy Number" value={policyData.oldPolicyNumber} />
                                     <Field label="Billing Frequency" value={policyData.billingFrequency} />
                                     <Field label="File Number" value={policyData.fileNumber} />
@@ -102,13 +110,13 @@ function PolicyDetails() {
                                 </div>
                             </div>
 
-                            <div className="bg-gray-100 p-6 rounded-lg">
+                            {/*<div className="bg-gray-100 p-6 rounded-lg">
                                 <p className="text-xl font-semibold mb-4">Policy Details</p>
                                 {policyData.policyDetails.map((detail, index) => (
                                     <div key={index} className="mb-6">
                                         <p className="text-lg font-semibold mb-2">Detail {index + 1}</p>
-                                        <Group label="Policy" data={detail.policy} />
-                                        <Group label="Person" data={detail.personId} />
+                                        <Field label="Policy" data={detail.policy} />
+                                        <Field label="Person" data={detail.personId} />
                                         <Field label="Relationship" value={detail.relationship} />
                                         <Field label="Category" value={detail.category} />
                                         <Field label="Join Date" value={formatDate(detail.joinDate)} />
@@ -123,7 +131,7 @@ function PolicyDetails() {
                                         <Field label="Status" value={detail.status} />
                                     </div>
                                 ))}
-                            </div>
+                            </div>*/}
                         </div>
 
                         <div className="mb-8"></div>
@@ -155,20 +163,27 @@ const DependentsTable = ({ dependents }) => (
     <table className="w-full border-collapse border border-gray-300">
         <thead>
             <tr className="bg-gray-200">
-                <th className="border border-gray-300 p-2">ID</th>
+                <th className="border border-gray-300 p-2">ID no./Passport no.</th>
+                <th className="border border-gray-300 p-2">Title</th>
                 <th className="border border-gray-300 p-2">Full Name</th>
                 <th className="border border-gray-300 p-2">Relationship</th>
                 <th className="border border-gray-300 p-2">Premium</th>
+                <th className="border border-gray-300 p-2">Actions</th>
                 {/* Add more table headers as needed */}
             </tr>
         </thead>
         <tbody>
             {dependents.map((dependent, index) => (
                 <tr key={index} className={(index % 2 === 0) ? 'bg-gray-100' : ''}>
-                    <td className="border border-gray-300 p-2">{dependent.id}</td>
-                    <td className="border border-gray-300 p-2">{dependent.fullname}</td>
+                    <td className="border border-gray-300 p-2">{dependent.personId.identity}</td>
+                    <td className="border border-gray-300 p-2">{dependent.personId.title}</td>
+                    <td className="border border-gray-300 p-2">{dependent.personId.firstname + ' ' + dependent.personId.surname}</td>
                     <td className="border border-gray-300 p-2">{dependent.relationship}</td>
-                    <td className="border border-gray-300 p-2">{dependent.premium}</td>
+                    <td className="border border-gray-300 p-2 text-right">{dependent.premium}</td>
+                    <td className="border border-gray-300 p-2 text-center">
+                        <button className="btn btn-square btn-ghost" onClick={() => viewSelectedDependent(index)}><EyeIcon className="w-5" /></button>
+                        <button className="btn btn-square btn-ghost" onClick={() => deleteSelectedDependent(index)}><TrashIcon className="w-5" /></button>
+                    </td>
                     {/* Add more table cells as needed */}
                 </tr>
             ))}
@@ -179,7 +194,7 @@ const DependentsTable = ({ dependents }) => (
 // Custom reusable field component
 const Field = ({ label, value }) => (
     <div className="flex items-center mb-2">
-        <p className="w-1/3 font-medium">{label}</p>
+        <p className="w-1/3 font-bold">{label}</p>
         <p className="w-2/3">{value || "N/A"}</p>
     </div>
 );

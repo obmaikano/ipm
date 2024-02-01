@@ -9,8 +9,7 @@ function SelectBox(props){
     
     const {labelTitle, labelDescription, defaultValue, containerStyle, placeholder, labelStyle, options, updateType, updateFormValue} = props
 
-    const [value, setValue] = useState(defaultValue || options[0].value);
-
+    const [value, setValue] = useState(options && options.length > 0 ? defaultValue || options[0].value : defaultValue);
 
     const updateValue = (newValue) =>{
         updateFormValue({updateType, value : newValue})
@@ -30,7 +29,7 @@ function SelectBox(props){
                 <option disabled value="PLACEHOLDER">{placeholder}</option>
                 {
                     options.map((o, k) => {
-                        return <option value={o.valueSet || o.valueSet} key={k}>{o.longValue}</option>
+                        return <option value={o.valueSet || o.valueSet} key={k}>{o.productName}</option>
                     })
                 }
             </select>

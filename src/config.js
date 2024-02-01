@@ -1,4 +1,4 @@
-export const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://51.20.75.106:';
+export const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://16.171.113.209:';
 export const COMMON_PROP_PORT = '8080/'
 export const POLICIES_PORT = '8181/'
 export const COMMON_PROP_URL = 'commonprops/listvalues/';
@@ -7,3 +7,4 @@ export const TITLE_URL = '';
 export const MARITAL_STATUS_URL = 'MARITALSTATUS';
 export const PREMIUM_COVERS_URL = 'premiumCovers';
 export const POLICIES_URL = 'policies';
+export const PERSON_INFO_URL = 'personInfo';

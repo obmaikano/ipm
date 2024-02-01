@@ -1,14 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { postPolicy } from "../policySlice";
 import { showNotification } from "../../common/headerSlice";
 import { useSelector } from "react-redux";
-import InputText from "../../../components/Input/InputText"
-import ErrorText from "../../../components/Typography/ErrorText"
-import SelectBox from "../../../components/Input/SelectBox"
+import InputText from "../../../components/Input/InputText";
+import ErrorText from "../../../components/Typography/ErrorText";
+import SelectBox from "../../../components/Input/SelectBox";
+import SelectSearchBox from "../../../components/Input/SelectSearchBox";
+import { fetchPremiumCoverProducts } from "../../commonprops/premiumCovers/premiumCoversSlice"
 
 const INITIAL_POLICY_OBJ = {
-    policyId: 0,
     personId: 0,
     schemeId: "",
     productId: "",
@@ -46,7 +47,12 @@ function AddPolicyModalBody({ closeModal, size }) {
 
     // Extract products and plans from the premiumCovers state
     const productOptions = useSelector((state) => state.premiumCover.premiumCovers);
-    const schemeOptions = useSelector((state) => state.premiumCover.premiumCovers);
+
+    useEffect(() => {
+        dispatch(fetchPremiumCoverProducts())
+    }, [])
+    
+    console.log(productOptions);
 
     const saveNewPolicy = () => {
         let newPolicyObj = {};
@@ -102,21 +108,24 @@ function AddPolicyModalBody({ closeModal, size }) {
             <>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                     {/* Person ID */}
-                    <InputText type="text" defaultValue={policyObj.personId} updateType="personId" containerStyle="mt-4" labelTitle="Person" updateFormValue={updateFormValue} />
+                    <SelectSearchBox labelTitle="Customer" containerStyle="mt-4" placeholder="Select Customer" labelStyle="text-sm font-medium text-gray-700" updateType="personId" updateFormValue={updateFormValue} fetchOptionsEndpoint="persons"/>
                     {/* Scheme ID */}
-                    <SelectBox labelTitle="Scheme" containerStyle="mt-4" placeholder="Select Scheme" labelStyle="text-sm font-medium text-gray-700" options={schemeOptions} updateType="schemeId" updateFormValue={updateFormValue} />
+                    <SelectBox labelTitle="Scheme" containerStyle="mt-4" placeholder="Select Scheme" labelStyle="text-sm font-medium text-gray-700" options={productOptions} updateType="schemeId" updateFormValue={updateFormValue} />
                     {/* Product ID */}
                     <SelectBox labelTitle="Product" containerStyle="mt-4" placeholder="Select Product" labelStyle="text-sm font-medium text-gray-700" options={productOptions} updateType="productId" updateFormValue={updateFormValue} />
+                    {/* Product ID */}
+                    <SelectBox labelTitle="Product" containerStyle="mt-4" placeholder="Select Plan" labelStyle="text-sm font-medium text-gray-700" options={productOptions} updateType="productId" updateFormValue={updateFormValue} />
                     {/* Agent Code */}
                     <InputText type="text" defaultValue={policyObj.agentCode} updateType="agentCode" containerStyle="mt-4" labelTitle="Agent Code" updateFormValue={updateFormValue} />
-                    {/* Policy Duration */}
+                    {/* Policy Duration 
                     <InputText type="text" defaultValue={policyObj.policyDuration} updateType="policyDuration" containerStyle="mt-4" labelTitle="Policy Duration" updateFormValue={updateFormValue} />
-                    {/* Policy Start Date */}
+                    {/* Policy Start Date 
                     <InputText type="date" defaultValue={policyObj.policyStartDate} updateType="policyStartDate" containerStyle="mt-4" labelTitle="Policy Start Date" updateFormValue={updateFormValue} />
-                    {/* Policy End Date */}
+                    {/* Policy End Date 
                     <InputText type="date" defaultValue={policyObj.policyEndDate} updateType="policyEndDate" containerStyle="mt-4" labelTitle="Policy End Date" updateFormValue={updateFormValue} />
-                    {/* Policy Activation Date */}
+                    {/* Policy Activation Date 
                     <InputText type="date" defaultValue={policyObj.policyActivationDate} updateType="policyActivationDate" containerStyle="mt-4" labelTitle="Policy Activation Date" updateFormValue={updateFormValue} />
+                    */}
                 </div>
             </>
         )
@@ -158,9 +167,9 @@ function AddPolicyModalBody({ closeModal, size }) {
         return (
             <>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                    {/* Previous Deduction Date */}
+                    {/* Previous Deduction Date 
                     <InputText type="date" defaultValue={policyObj.previousDeductionDate} updateType="previousDeductionDate" containerStyle="mt-4" labelTitle="Previous Deduction Date" updateFormValue={updateFormValue} />
-                    {/* Previous Deduction Amount */}
+                    {/* Previous Deduction Amount 
                     <InputText type="text" defaultValue={policyObj.previousDeductionAmount} updateType="previousDeductionAmount" containerStyle="mt-4" labelTitle="Previous Deduction Amount" updateFormValue={updateFormValue} />
                     {/* Total Cover Amount */}
                     <InputText type="text" defaultValue={policyObj.totalCoverAmount} updateType="totalCoverAmount" containerStyle="mt-4" labelTitle="Total Cover Amount" updateFormValue={updateFormValue} />
@@ -179,10 +188,11 @@ function AddPolicyModalBody({ closeModal, size }) {
                     <InputText type="text" defaultValue={policyObj.policyStatus} updateType="policyStatus" containerStyle="mt-4" labelTitle="Policy Status" updateFormValue={updateFormValue} />
                     {/* Create Date */}
                     <InputText type="date" defaultValue={policyObj.createDate} updateType="createDate" containerStyle="mt-4" labelTitle="Create Date" updateFormValue={updateFormValue} />
-                    {/* Update Date */}
+                    {/* Update Date 
                     <InputText type="date" defaultValue={policyObj.updateDate} updateType="updateDate" containerStyle="mt-4" labelTitle="Update Date" updateFormValue={updateFormValue} />
-                    {/* Last Update By */}
+                    {/* Last Update By 
                     <InputText type="text" defaultValue={policyObj.lastUpdateBy} updateType="lastUpdateBy" containerStyle="mt-4" labelTitle="Last Update By" updateFormValue={updateFormValue} />
+                    */}
                 </div>
             </>
         );
@@ -196,28 +206,21 @@ function AddPolicyModalBody({ closeModal, size }) {
                 </div>
 
                 <div className="col-span-2">
-                    <p><strong>Policy ID:</strong></p>
-                </div>
-                <div className="col-span-4">
-                    <p>{policyObj.policyId}</p>
-                </div>
-
-                <div className="col-span-2">
-                    <p><strong>Person ID:</strong></p>
+                    <p><strong>Principal:</strong></p>
                 </div>
                 <div className="col-span-4">
                     <p>{policyObj.personId}</p>
                 </div>
 
                 <div className="col-span-2">
-                    <p><strong>Scheme ID:</strong></p>
+                    <p><strong>Scheme:</strong></p>
                 </div>
                 <div className="col-span-4">
                     <p>{policyObj.schemeId}</p>
                 </div>
 
                 <div className="col-span-2">
-                    <p><strong>Product ID:</strong></p>
+                    <p><strong>Product:</strong></p>
                 </div>
                 <div className="col-span-4">
                     <p>{policyObj.productId}</p>
@@ -229,7 +232,7 @@ function AddPolicyModalBody({ closeModal, size }) {
                 <div className="col-span-4">
                     <p>{policyObj.agentCode}</p>
                 </div>
-
+                {/*
                 <div className="col-span-2">
                     <p><strong>Policy Start Date:</strong></p>
                 </div>
@@ -250,13 +253,13 @@ function AddPolicyModalBody({ closeModal, size }) {
                 <div className="col-span-4">
                     <p>{policyObj.policyActivationDate}</p>
                 </div>
-
+                */}
                 <div className="col-span-12">
                     <h2>Billing Details:</h2>
                 </div>
 
                 <div className="col-span-2">
-                    <p><strong>Billing ID:</strong></p>
+                    <p><strong>Billing:</strong></p>
                 </div>
                 <div className="col-span-4">
                     <p>{policyObj.billingId}</p>
