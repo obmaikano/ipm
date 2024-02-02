@@ -6,7 +6,7 @@ import TrashIcon from '@heroicons/react/24/outline/TrashIcon'
 import EyeIcon from "@heroicons/react/24/outline/EyeIcon";
 import { CONFIRMATION_MODAL_CLOSE_TYPES, MODAL_BODY_TYPES } from "../../utils/globalConstantUtil";
 import { useNavigate } from "react-router-dom"
-import { getEmployer } from "./employerSlice"
+import { getEmployer, getAllEmployers } from "./employerSlice"
 
 const TopSideButtons = () => {
     const dispatch = useDispatch();
@@ -29,8 +29,8 @@ function Employers() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        //dispatch(getAllEmployers)
-    });
+        dispatch(getAllEmployers())
+    }, []);
 
     const deleteCurrentEmployer = (index) => {
         dispatch(openModal({
@@ -69,15 +69,15 @@ function Employers() {
                             {
                                 employers.map((l, k) => {
                                     return (
-                                        <tr key={k}>
+                                        <tr key={l.id}>
                                             <td>{l.employerNumber}</td>
                                             <td>{l.employerName}</td>
                                             <td>{l.deductionCode}</td>
                                             <td>{l.employerType}</td>
                                             <td>{l.updatedBy}</td>
                                             <td>{l.createDate}</td>
-                                            <td><button className="btn btn-square btn-ghost" onClick={() => viewCurrentEmployer(k)}><EyeIcon className="w-5" /></button>
-                                            <button className="btn btn-square btn-ghost" onClick={() => deleteCurrentEmployer(k)}><TrashIcon className="w-5" /></button></td>
+                                            <td><button className="btn btn-square btn-ghost" onClick={() => viewCurrentEmployer(l.id)}><EyeIcon className="w-5" /></button>
+                                            <button className="btn btn-square btn-ghost" onClick={() => deleteCurrentEmployer(l.id)}><TrashIcon className="w-5" /></button></td>
                                         </tr>
                                     )
                                 })

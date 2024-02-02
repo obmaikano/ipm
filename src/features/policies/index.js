@@ -45,7 +45,6 @@ function Policies() {
         dispatch(getPolicy(index))
             .then((policyData) => {
                 // Handle success, e.g., navigate to a new route with policy details
-                console.log('Policy data:', policyData);
                 // Navigate to a new route and pass policy data as state
                 navigate(`/app/policies/${index}`, { state: { policyData } });
             })
@@ -77,7 +76,7 @@ function Policies() {
                             {
                                 policies.map((l, k) => {
                                     return (
-                                        <tr key={k}>
+                                        <tr key={l.id}>
                                             <td>{l.id}</td>
                                             <td></td>
                                             <td></td>
@@ -85,8 +84,8 @@ function Policies() {
                                             <td>{l.policyStatus}</td>
                                             <td>{l.lastUpdateBy}</td>
                                             <td>{l.createDate}</td>
-                                            <td><button className="btn btn-square btn-ghost" onClick={() => viewCurrentPolicy(k)}><EyeIcon className="w-5" /></button>
-                                            <button className="btn btn-square btn-ghost" onClick={() => deleteCurrentPolicy(k)}><TrashIcon className="w-5" /></button></td>
+                                            <td><button className="btn btn-square btn-ghost" onClick={() => viewCurrentPolicy(l.id)}><EyeIcon className="w-5" /></button>
+                                            <button className="btn btn-square btn-ghost" onClick={() => deleteCurrentPolicy(l.id)}><TrashIcon className="w-5" /></button></td>
                                         </tr>
                                     )
                                 })

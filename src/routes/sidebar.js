@@ -62,32 +62,27 @@ const routes = [
     name: 'Policy Administration', // name that appear in Sidebar
     submenu : [
       {
-        path: '#',
+        path: '/app/schemes',
         icon: <WalletIcon className={submenuIconClasses}/>,
-        name: 'Policy Products',
+        name: 'Schemes',
       },
       {
-        path: '#', // url
+        path: '/app/products', // url
         icon: <UsersIcon className={submenuIconClasses}/>, // icon component
-        name: 'Product Plans', // name that appear in Sidebar
+        name: 'Products', // name that appear in Sidebar
       },
       {
-        path: '#', // url
-        icon: <UsersIcon className={submenuIconClasses}/>, // icon component
-        name: 'Policy Requests', // name that appear in Sidebar
-      },
-      {
-        path: '/app/settings-team', // url
+        path: '/app/policy-allocation', // url
         icon: <UsersIcon className={submenuIconClasses}/>, // icon component
         name: 'Policy Allocation', // name that appear in Sidebar
       },
       {
-        path: '/app/settings-team', // url
+        path: '/app/premium-allocation', // url
         icon: <UsersIcon className={submenuIconClasses}/>, // icon component
         name: 'Manage Premium Allocations', // name that appear in Sidebar
       },
       {
-        path: '/app/settings-team', // url
+        path: '/app/bourdreauz', // url
         icon: <UsersIcon className={submenuIconClasses}/>, // icon component
         name: 'View Boudreaux', // name that appear in Sidebar
       },
@@ -99,7 +94,7 @@ const routes = [
     name: 'Claims Management', // name that appear in Sidebar
     submenu : [
       {
-        path: '/app/settings-profile', //url
+        path: '/app/claims', //url
         icon: <UserIcon className={submenuIconClasses}/>, // icon component
         name: 'All Claims', // name that appear in Sidebar
       }

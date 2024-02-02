@@ -21,6 +21,16 @@ export const getEmployer = createAsyncThunk('getemployer', async (employerId) =>
     }
 });
 
+// Define async thunk for getting an employer by employerId
+export const getAllEmployers = createAsyncThunk('getallemployer', async () => {
+    try {
+        const response = await axios.get(`${API_BASE_URL}${COMMON_PROP_PORT}${EMPLOYER_URL}/all`);
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+});
+
 // Define async thunk for updating an employer by employerId
 export const putEmployer = createAsyncThunk('putemployer', async ({ employerId, employerData }) => {
     try {
@@ -66,6 +76,14 @@ const employerSlice = createSlice({
             .addCase(getEmployer.fulfilled, (state, action) => {
                 // update state with fetch employer on successful api call
                 state.selectedEmployer = action.payload;
+                state.isLoading = false;
+            })
+            .addCase(getAllEmployers.rejected, (state, action) => {
+                console.log('Error getting employer: ', action.error.message);
+            })
+            .addCase(getAllEmployers.fulfilled, (state, action) => {
+                // update state with fetch employers on successful api call
+                state.employers = action.payload;
                 state.isLoading = false;
             })
             .addCase(getEmployer.rejected, (state, action) => {

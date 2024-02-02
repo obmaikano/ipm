@@ -7,6 +7,7 @@ import ConfirmationModalBody from '../features/common/components/ConfirmationMod
 import AddCustomerModalBody from '../features/persons/components/AddCustomerModalBody'
 import AddCustomerCategoryModalBody from '../features/customerCategories/components/AddCustomerCategoryModalBody'
 import AddPolicyModalBody from '../features/policies/components/AddPolicyModalBody'
+import AddEmployerModalBody from '../features/employers/components/AddEmployerModal'
 
 function ModalLayout(){
 
@@ -36,6 +37,7 @@ function ModalLayout(){
                     {
                              [MODAL_BODY_TYPES.LEAD_ADD_NEW] : <AddLeadModalBody closeModal={close} extraObject={extraObject}/>,
                              [MODAL_BODY_TYPES.CUSTOMER_ADD_NEW] : <AddCustomerModalBody closeModal={close} size='lg' extraObject={extraObject}/>,
+                             [MODAL_BODY_TYPES.EMPLOYER_ADD_NEW] : <AddEmployerModalBody closeModal={close} size='lg' extraObject={extraObject}/>,
                              [MODAL_BODY_TYPES.POLICY_ADD_NEW] : <AddPolicyModalBody closeModal={close} size='lg' extraObject={extraObject}/>,
                              [MODAL_BODY_TYPES.CONFIRMATION] : <ConfirmationModalBody closeModal={close} extraObject={extraObject}/>,
                              [MODAL_BODY_TYPES.CUSTOMER_CATEGORY_ADD_NEW] : <AddCustomerCategoryModalBody extraObject={extraObject} closeModal={close}/>,
