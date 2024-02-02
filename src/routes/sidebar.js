@@ -19,130 +19,125 @@ const routes = [
 
   {
     path: '/app/dashboard',
-    icon: <Squares2X2Icon className={iconClasses}/>, 
+    icon: <Squares2X2Icon className={iconClasses} />,
     name: 'Dashboard',
   },
   {
     path: '', //no url needed as this has submenu
-    icon: <UsersIcon className={`${iconClasses} inline` }/>, // icon component
+    icon: <UsersIcon className={`${iconClasses} inline`} />, // icon component
     name: 'Customer Management', // name that appear in Sidebar
-    submenu : [
+    submenu: [
       {
         path: '/app/customers', //url
-        icon: <UserIcon className={submenuIconClasses}/>, // icon component
+        icon: <UserIcon className={submenuIconClasses} />, // icon component
         name: 'Customers', // name that appear in Sidebar
       },
       {
         path: '/app/customercategories',
-        icon: <UsersGroupIcon className={submenuIconClasses}/>,
+        icon: <UsersGroupIcon className={submenuIconClasses} />,
         name: 'Customer Categories',
       },
       {
         path: '/app/employers', // url
-        icon: <WalletIcon className={submenuIconClasses}/>, // icon component
+        icon: <WalletIcon className={submenuIconClasses} />, // icon component
         name: 'Employers', // name that appear in Sidebar
       },
     ]
   },
   {
     path: '', //no url needed as this has submenu
-    icon: <FolderOpenIcon className={`${iconClasses} inline` }/>, // icon component
+    icon: <FolderOpenIcon className={`${iconClasses} inline`} />, // icon component
     name: 'Policy Management', // name that appear in Sidebar
-    submenu : [
+    submenu: [
       {
         path: '/app/policies', //url
-        icon: <UserIcon className={submenuIconClasses}/>, // icon component
+        icon: <UserIcon className={submenuIconClasses} />, // icon component
         name: 'All Policies', // name that appear in Sidebar
       },
     ]
   },
   {
     path: '', //no url needed as this has submenu
-    icon: <FolderPlusIcon className={`${iconClasses} inline` }/>, // icon component
+    icon: <FolderPlusIcon className={`${iconClasses} inline`} />, // icon component
     name: 'Policy Administration', // name that appear in Sidebar
-    submenu : [
+    submenu: [
       {
         path: '/app/schemes',
-        icon: <WalletIcon className={submenuIconClasses}/>,
+        icon: <WalletIcon className={submenuIconClasses} />,
         name: 'Schemes',
       },
       {
-        path: '/app/products', // url
-        icon: <UsersIcon className={submenuIconClasses}/>, // icon component
-        name: 'Products', // name that appear in Sidebar
-      },
-      {
         path: '/app/policy-allocation', // url
-        icon: <UsersIcon className={submenuIconClasses}/>, // icon component
+        icon: <UsersIcon className={submenuIconClasses} />, // icon component
         name: 'Policy Allocation', // name that appear in Sidebar
       },
       {
         path: '/app/premium-allocation', // url
-        icon: <UsersIcon className={submenuIconClasses}/>, // icon component
+        icon: <UsersIcon className={submenuIconClasses} />, // icon component
         name: 'Manage Premium Allocations', // name that appear in Sidebar
       },
       {
         path: '/app/bourdreauz', // url
-        icon: <UsersIcon className={submenuIconClasses}/>, // icon component
+        icon: <UsersIcon className={submenuIconClasses} />, // icon component
         name: 'View Boudreaux', // name that appear in Sidebar
       },
     ]
   },
   {
     path: '', //no url needed as this has submenu
-    icon: <LifebuoyIcon className={`${iconClasses} inline` }/>, // icon component
+    icon: <LifebuoyIcon className={`${iconClasses} inline`} />, // icon component
     name: 'Claims Management', // name that appear in Sidebar
-    submenu : [
+    submenu: [
       {
         path: '/app/claims', //url
-        icon: <UserIcon className={submenuIconClasses}/>, // icon component
+        icon: <UserIcon className={submenuIconClasses} />, // icon component
         name: 'All Claims', // name that appear in Sidebar
       }
     ]
   },
   {
     path: '/app/transactions', // url
-    icon: <CurrencyDollarIcon className={iconClasses}/>, // icon component
+    icon: <CurrencyDollarIcon className={iconClasses} />, // icon component
     name: 'Billing Cycle List', // name that appear in Sidebar
   },
   {
     path: '/app/charts', // url
-    icon: <ChartBarIcon className={iconClasses}/>, // icon component
+    icon: <ChartBarIcon className={iconClasses} />, // icon component
     name: 'Reports', // name that appear in Sidebar
   },
   {
     path: '/app/transactions', // url
-    icon: <ComputerDesktopIcon className={iconClasses}/>, // icon component
+    icon: <ComputerDesktopIcon className={iconClasses} />, // icon component
     name: 'House keeping', // name that appear in Sidebar
   },
   {
     path: '', //no url needed as this has submenu
-    icon: <Cog6ToothIcon className={`${iconClasses} inline` }/>, // icon component
+    icon: <Cog6ToothIcon className={`${iconClasses} inline`} />, // icon component
     name: 'Settings', // name that appear in Sidebar
-    submenu : [
+    submenu: [
       {
         path: '/app/settings-profile', //url
-        icon: <UserIcon className={submenuIconClasses}/>, // icon component
+        icon: <UserIcon className={submenuIconClasses} />, // icon component
         name: 'Profile', // name that appear in Sidebar
       },
       {
         path: '/app/settings-billing',
-        icon: <WalletIcon className={submenuIconClasses}/>,
+        icon: <WalletIcon className={submenuIconClasses} />,
         name: 'Users',
       },
       {
         path: '/app/settings-team', // url
-        icon: <UsersIcon className={submenuIconClasses}/>, // icon component
+        icon: <UsersIcon className={submenuIconClasses} />, // icon component
         name: 'User Roles', // name that appear in Sidebar
       },
       {
         path: '/app/settings-team', // url
-        icon: <UsersIcon className={submenuIconClasses}/>, // icon component
+        icon: <UsersIcon className={submenuIconClasses} />, // icon component
         name: 'System Configuration', // name that appear in Sidebar
       },
     ]
   },
-  
+
 ]
 
 export default routes

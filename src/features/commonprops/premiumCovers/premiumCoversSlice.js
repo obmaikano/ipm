@@ -51,7 +51,7 @@ export const fetchSinglePremiumCover = createAsyncThunk('singlepremiumcover', as
 export const fetchPremiumCoverPlan = createAsyncThunk('premiumcoverplan', async (planId) => {
   try {
     // Make API call to fetch a plan for a premium cover product by planId
-    const response = await axios.get(`${API_BASE_URL}${COMMON_PROP_PORT}${PREMIUM_COVERS_URL}/product/plan/${planId}`);
+    const response = await axios.get(`${API_BASE_URL}${COMMON_PROP_PORT}${PREMIUM_COVERS_URL}/plan/${planId}`);
     return response.data;
   } catch (error) {
     // Handle errors during API call
