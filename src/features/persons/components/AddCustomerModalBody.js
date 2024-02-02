@@ -91,7 +91,7 @@ function AddCustomerModalBody({ closeModal, size }) {
                 "cardExpiry": bankAccountObj.cardExpiry
             }
         }
-        dispatch(postPerson({ newCustomerObj }))
+        dispatch(postPerson(newCustomerObj))
         dispatch(showNotification({ message: "New Customer Added!", status: 1 }));
         closeModal();
     }

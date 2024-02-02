@@ -6,8 +6,10 @@ import { useSelector } from "react-redux";
 import InputText from "../../../components/Input/InputText";
 import ErrorText from "../../../components/Typography/ErrorText";
 import SelectBox from "../../../components/Input/SelectBox";
+import SelectBoxSecondary from "../../../components/Input/SelectBoxSecondary";
 import SelectSearchBox from "../../../components/Input/SelectSearchBox";
 import { fetchPremiumCoverProducts } from "../../commonprops/premiumCovers/premiumCoversSlice"
+
 
 const INITIAL_POLICY_OBJ = {
     personId: 0,
@@ -33,30 +35,31 @@ const INITIAL_POLICY_OBJ = {
     createDate: new Date().toISOString(),
     updateDate: new Date().toISOString(),
     lastUpdateBy: "",
+    policyGroupCoverRelationshipId: "",
 };
 
 // Set default values for some fields
 INITIAL_POLICY_OBJ.totalCoverAmount = 0.0;
 INITIAL_POLICY_OBJ.totalPremium = 0.0;
 
+
 function AddPolicyModalBody({ closeModal, size }) {
     const dispatch = useDispatch()
     const [errorMessage, setErrorMessage] = useState("")
     const [currentStep, setCurrentStep] = useState(1)
     const [policyObj, setPolicyObj] = useState(INITIAL_POLICY_OBJ)
-
-    // Extract products and plans from the premiumCovers state
-    const productOptions = useSelector((state) => state.premiumCover.premiumCovers);
+    const [selectedScheme, setSelectedScheme] = useState(null); // Track selected scheme
+    const [selectedProduct, setSelectedProduct] = useState(null); // Track selected product
 
     useEffect(() => {
-        dispatch(fetchPremiumCoverProducts())
-    }, [])
-    
-    console.log(productOptions);
+        dispatch(fetchPremiumCoverProducts()); // Assuming you have an action for fetching premium covers
+    }, []); // Empty dependency array ensures this effect runs only once on mount
+
+    const productOptions = useSelector((state) => state.premiumCover.premiumCovers);
 
     const saveNewPolicy = () => {
         let newPolicyObj = {};
-     
+
         // Check if productId or schemeId is empty, and set an error message if true
         if (policyObj.productId.trim() === "") {
             return setErrorMessage("Select a product first!");
@@ -89,32 +92,54 @@ function AddPolicyModalBody({ closeModal, size }) {
                 lastUpdateBy: policyObj.lastUpdateBy,
             };
         }
-    
+
         // Dispatch actions for posting policy and showing notification
-        dispatch(postPolicy({ newPolicyObj }));
+        dispatch(postPolicy(newPolicyObj));
         dispatch(showNotification({ message: "New Policy Added!", status: 1 }));
-        
+
         // Close the modal
         closeModal();
     };
 
     const updateFormValue = ({ updateType, value }) => {
-        setErrorMessage("")
-        setPolicyObj({ ...policyObj, [updateType]: value })
-    }
+        setErrorMessage("");
+        setPolicyObj({ ...policyObj, [updateType]: value });
+
+        // If the selected field is "Scheme", update the selected scheme
+        if (updateType === "schemeId") {
+            setSelectedScheme(value);
+        }
+
+        if (updateType === "productId") {
+            setSelectedProduct(value);
+        }
+
+    };
+
+    // // Filter products based on the selected scheme
+    const filteredProducts = selectedScheme
+        ? (productOptions.find((scheme) => scheme.id == selectedScheme) || {})?.policyProductPlan || []
+        : [];
+
+    // // Filter plans based on the selected product (assuming plans are a child collection of the product)
+    const filteredPlans = selectedProduct
+        ? filteredProducts.find((product) => product.id == selectedProduct)?.policyGroupCoverRelationships || []
+        : [];
+
+    console.log(filteredPlans);
 
     const renderBasicInformationFields = () => {
-        return(
+        return (
             <>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                     {/* Person ID */}
-                    <SelectSearchBox labelTitle="Customer" containerStyle="mt-4" placeholder="Select Customer" labelStyle="text-sm font-medium text-gray-700" updateType="personId" updateFormValue={updateFormValue} fetchOptionsEndpoint="persons"/>
+                    <SelectSearchBox labelTitle="Customer" containerStyle="mt-4" placeholder="Select Customer" labelStyle="text-sm font-medium text-gray-700" updateType="personId" updateFormValue={updateFormValue} fetchOptionsEndpoint="persons" />
                     {/* Scheme ID */}
-                    <SelectBox labelTitle="Scheme" containerStyle="mt-4" placeholder="Select Scheme" labelStyle="text-sm font-medium text-gray-700" options={productOptions} updateType="schemeId" updateFormValue={updateFormValue} />
+                    <SelectBoxSecondary labelTitle="Scheme" containerStyle="mt-4" placeholder="Select Scheme" labelStyle="text-sm font-medium text-gray-700" fieldLabel="productName" options={productOptions} updateType="schemeId" updateFormValue={updateFormValue} />
                     {/* Product ID */}
-                    <SelectBox labelTitle="Product" containerStyle="mt-4" placeholder="Select Product" labelStyle="text-sm font-medium text-gray-700" options={productOptions} updateType="productId" updateFormValue={updateFormValue} />
+                    <SelectBoxSecondary labelTitle="Product" containerStyle="mt-4" placeholder="Select Product" labelStyle="text-sm font-medium text-gray-700" fieldLabel="productPlanName" options={filteredProducts} updateType="productId" updateFormValue={updateFormValue} />
                     {/* Product ID */}
-                    <SelectBox labelTitle="Product" containerStyle="mt-4" placeholder="Select Plan" labelStyle="text-sm font-medium text-gray-700" options={productOptions} updateType="productId" updateFormValue={updateFormValue} />
+                    <SelectBoxSecondary labelTitle="Product" containerStyle="mt-4" placeholder="Select Plan" labelStyle="text-sm font-medium text-gray-700" fieldLabel="relationshipGroup" options={filteredPlans} updateType="policyGroupCoverRelationshipId" updateFormValue={updateFormValue} />
                     {/* Agent Code */}
                     <InputText type="text" defaultValue={policyObj.agentCode} updateType="agentCode" containerStyle="mt-4" labelTitle="Agent Code" updateFormValue={updateFormValue} />
                     {/* Policy Duration 

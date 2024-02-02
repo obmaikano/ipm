@@ -7,12 +7,14 @@ import EyeIcon from "@heroicons/react/24/outline/EyeIcon";
 import { CONFIRMATION_MODAL_CLOSE_TYPES, MODAL_BODY_TYPES } from "../../utils/globalConstantUtil";
 import { useNavigate } from "react-router-dom"
 import { getEmployer, getAllEmployers } from "./employerSlice"
+import DataTable from 'react-data-table-component';
+
 
 const TopSideButtons = () => {
     const dispatch = useDispatch();
 
     const openAddNewEmployerModal = () => {
-        dispatch(openModal({ title: "Add New Employer", size: "lg", bodyType: MODAL_BODY_TYPES.EMPLOYER_ADD_NEW}))
+        dispatch(openModal({ title: "Add New Employer", size: "lg", bodyType: MODAL_BODY_TYPES.EMPLOYER_ADD_NEW }))
     }
 
     return (
@@ -41,49 +43,92 @@ function Employers() {
 
     const viewCurrentEmployer = (index) => {
         dispatch(getEmployer(index))
-        .then((employerData) => {
-            navigate(`/app/employers/${index}`, {state: { employerData } });
-        })
-        .catch((error) => {
-            console.error('Error fetching employer: ', error.message);
-        });
+            .then((employerData) => {
+                navigate(`/app/employers/${index}`, { state: { employerData } });
+            })
+            .catch((error) => {
+                console.error('Error fetching employer: ', error.message);
+            });
     }
+
+    const columns = [
+        {
+            name: "Employer Number",
+            selector: (row) => row.employerNumber,
+            sortable: true,
+        },
+        {
+            name: "Employer Name",
+            selector: (row) => row.employerName,
+            sortable: true,
+        },
+        {
+            name: "Deduction Code",
+            selector: (row) => row.deductionCode,
+            sortable: true,
+        },
+        {
+            name: "Employer Type",
+            selector: (row) => row.employerType,
+            sortable: true,
+        },
+        {
+            name: "Last Update By",
+            selector: (row) => row.lastUpdateBy,
+            sortable: true,
+        },
+        {
+            name: "Date Created",
+            selector: (row) => row.createDate,
+            sortable: true,
+        },
+        {
+            name: "Actions",
+            cell: (row) => (
+                <div>
+                    {/* Add your action buttons here */}
+                    <button className="btn btn-square btn-ghost" onClick={() => viewCurrentEmployer(row.id)}><EyeIcon className="w-5" /></button>
+                    <button className="btn btn-square btn-ghost" onClick={() => deleteCurrentEmployer(row.id)}><TrashIcon className="w-5" /></button>
+                    {/* Add more buttons as needed */}
+                </div>
+            ),
+        },
+    ]
+
+    const employersColletion = employers
+        .filter((item) => {
+            const values = Object.values(item);
+            //const lowercaseSearchText = searchText.toLowerCase();
+            return values.some((value) => {
+                if (typeof value === "string" || typeof value === "number") {
+                    return String(value).toLowerCase().includes(value);
+                }
+                return false;
+            });
+        })
+        .map((element) => ({
+            id: element.id,
+            employerNumber: element.employerNumber,
+            employerName: element.employerName,
+            deductionCode: element.deductionCode,
+            employerType: element.employerType,
+            lastUpdateBy: element.lastUpdateBy,
+            createDate: element.createDate,
+        }));
+
 
     return (
         <>
             <TitleCard title="All Employers" topMargin="mt-2" TopSideButtons={<TopSideButtons />}>
-            <div className="overflow-x-auto w-full">
-                    <table className="table w-full">
-                        <thead>
-                            <tr>
-                                <th>Employer Number</th>
-                                <th>Name</th>
-                                <th>Deduction Code</th>
-                                <th>Type</th>
-                                <th>Created By</th>
-                                <th>Date Created</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                employers.map((l, k) => {
-                                    return (
-                                        <tr key={l.id}>
-                                            <td>{l.employerNumber}</td>
-                                            <td>{l.employerName}</td>
-                                            <td>{l.deductionCode}</td>
-                                            <td>{l.employerType}</td>
-                                            <td>{l.updatedBy}</td>
-                                            <td>{l.createDate}</td>
-                                            <td><button className="btn btn-square btn-ghost" onClick={() => viewCurrentEmployer(l.id)}><EyeIcon className="w-5" /></button>
-                                            <button className="btn btn-square btn-ghost" onClick={() => deleteCurrentEmployer(l.id)}><TrashIcon className="w-5" /></button></td>
-                                        </tr>
-                                    )
-                                })
-                            }
-                        </tbody>
-                    </table>
+                <div className="overflow-x-auto w-full">
+                    <DataTable
+                        columns={columns}
+                        data={employersColletion}
+                        pagination
+                        subHeader
+                        selectableRows
+                        persistTableHead
+                    />
                 </div>
             </TitleCard>
         </>

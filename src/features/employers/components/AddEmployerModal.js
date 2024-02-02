@@ -129,13 +129,13 @@ function AddEmployerModalBody({ closeModal, size }) {
                     {renderStepFields()}
                     <ErrorText styleClass="mt-16">{errorMessage}</ErrorText>
                     <div className="modal-action">
-                        <button
+                       {/*} <button
                             className="btn btn-ghost"
                             onClick={() => setCurrentStep(currentStep - 1)}
                             disabled={currentStep === 1}
                         >
                             Previous
-                        </button>
+                        </button>*/}
 
                         <button
                             className="btn btn-primary px-6"
