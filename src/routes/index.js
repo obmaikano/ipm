@@ -23,6 +23,7 @@ const Policies = lazy(() => import('../pages/protected/Policies'))
 const PolicyDetails = lazy(() => import('../pages/protected/PolicyDetails'))
 const Employers = lazy(() => import('../pages/protected/Employers'))
 const EmployerDetails = lazy(() => import('../pages/protected/EmployerDetails'))
+const Schemes = lazy(() => import('../pages/protected/Schemes'))
 
 const routes = [
   {
@@ -108,6 +109,10 @@ const routes = [
   {
     path: '/employers/:id',
     component: EmployerDetails
+  },
+  {
+    path: '/schemes',
+    component: Schemes
   },
 ]
 
