@@ -65,11 +65,11 @@ const DependentsTopSideButtons = () => {
 };
 
 const deleteSelectedDependent = (index) => {
-   
+
 }
 
 const viewSelectedDependent = (index) => {
-    
+
 }
 
 function PolicyDetails() {
