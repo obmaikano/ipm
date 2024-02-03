@@ -1,0 +1,60 @@
+import React from 'react';
+import DataTable from 'react-data-table-component';
+
+export const GroupCoverPremiumsTable = ({ policyGroupCoverPremiums }) => {
+    const columns = [
+        {
+            name: "Product",
+            selector: (row) => row.product,
+            sortable: true,
+        },
+        {
+            name: "Plan",
+            selector: (row) => row.plan,
+            sortable: true,
+        },
+        {
+            name: "Relationship Group",
+            selector: (row) => row.relationshipGroup,
+            sortable: true,
+        },
+        {
+            name: "Premium",
+            selector: (row) => row.premium,
+            sortable: true,
+        },
+    ]
+
+    policyGroupCoverPremiums = policyGroupCoverPremiums
+    .filter((item) => {
+        const values = Object.values(item);
+        return values.some((value) => {
+            if (typeof value === "string" || typeof value === "number") {
+                return String(value).toLowerCase().includes(value);
+            }
+            return false;
+        });
+    })
+    .map((element) => ({
+        id: element.id,
+        product: element.product,
+        plan: element.plan,
+        relationshipGroup: element.relationshipGroup,
+        premium: element.premium
+    }))
+
+    return (
+        <>
+            <div className="overflow-x-auto w-full">
+                <DataTable
+                    columns={columns}
+                    data={policyGroupCoverPremiums}
+                    pagination
+                    subHeader
+                    selectableRows
+                    persistTableHead
+                />
+            </div>
+        </>
+    )
+}
